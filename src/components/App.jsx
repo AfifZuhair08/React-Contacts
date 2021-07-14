@@ -1,31 +1,27 @@
 import React from "react";
 import Card from "./Card";
 import contacts from "../contacts";
-import Avatar from "./Avatar";
+
+// Single object with list of arrays (Contact for contacts)
+function createCard(contact) {
+  return(
+    <Card 
+      key={contact.id} //special property
+      id={contact.id}
+      name={contact.name}
+      imgURL={contact.imgURL}
+      phone={contact.phone}
+      email={contact.email}
+    />
+  );
+}
 
 function App() {
   return (
     <div>
       <h1 className="heading">My Contacts</h1>
-      <Avatar avatarImg="https://townsquare.media/site/812/files/2020/12/eminem.jpg"/>
-      <Card 
-        name={contacts[0].name}
-        imgURL={contacts[0].imgURL}
-        phone={contacts[0].phone}
-        email={contacts[0].email}
-      />
-      <Card 
-        name={contacts[1].name}
-        imgURL={contacts[1].imgURL}
-        phone={contacts[1].phone}
-        email={contacts[1].email}
-      />
-      <Card 
-        name={contacts[2].name}
-        imgURL={contacts[2].imgURL}
-        phone={contacts[2].phone}
-        email={contacts[2].email}
-      />
+      {/* REPETITIVE ELEMENT USING MAP*/}
+      {contacts.map(createCard)}
     </div>
   );
 }
